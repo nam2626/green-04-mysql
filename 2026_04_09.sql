@@ -74,6 +74,37 @@ show grants for 'car_user'@'localhost';
 revoke select on car_db.* from 'car_user'@'localhost';
 flush privileges;
 
+-- 회원 DB 생성
+create database member_db;
+-- 회원 관리자, 앱 사용자, 콜센터 사용자 생성
+create user 'member_admin'@'localhost' identified by '12345678';
+create user 'app_user'@'localhost' identified by '12345678';
+create user 'cs_user'@'localhost' identified by '12345678';
+-- 권한 부여
+grant all privileges on member_db.* 
+to 'member_admin'@'localhost';
+grant select,insert,update on member_db.* 
+to 'app_user'@'localhost';
+grant select on member_db.* to 'cs_user'@'localhost';
 
+-- DB 선택
+use member_db;
+-- 회원 테이블 생성
+CREATE TABLE members (
+  member_id   INT          AUTO_INCREMENT PRIMARY KEY, -- 회원 고유번호
+  username    VARCHAR(50)  NOT NULL,                   -- 아이디
+  email       VARCHAR(100) NOT NULL,                   -- 이메일
+  grade       VARCHAR(20)  DEFAULT 'BRONZE',           -- 회원 등급
+  is_active   BOOLEAN      DEFAULT TRUE,               -- 활성 여부
+  joined_at   DATETIME     DEFAULT NOW()               -- 가입일
+);
 
+-- 회원 테이블에 샘플데이터 추가
+INSERT INTO members (username, email, grade, is_active, joined_at) VALUES
+('kim_coder', 'kim@example.com', 'GOLD', TRUE, '2023-01-15 10:30:00'),
+('lee_developer', 'lee@example.com', 'SILVER', TRUE, '2023-05-20 14:15:00'),
+('park_star', 'park@example.com', 'BRONZE', TRUE, NOW()),
+('choi_admin', 'choi@example.com', 'PLATINUM', TRUE, '2022-12-01 09:00:00'),
+('jung_user', 'jung@example.com', 'BRONZE', FALSE, '2024-02-10 18:45:00');
 
+SELECT * FROM members;
