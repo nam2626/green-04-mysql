@@ -108,3 +108,19 @@ INSERT INTO members (username, email, grade, is_active, joined_at) VALUES
 ('jung_user', 'jung@example.com', 'BRONZE', FALSE, '2024-02-10 18:45:00');
 
 SELECT * FROM members;
+
+-- DML - INSERT(데이터 삽입)
+-- INSERT INTO 테이블명 VALUES(데이터1,데이터2,...)
+-- 모든 필드에 데이터를 넣을때 사용
+INSERT INTO MEMBERS 
+VALUES(6,'홍길동','TEST@abc.com','BRONZE',FALSE,now());
+-- INSERT INTO 테이블명(속성명1, 속성명2,...) VALUES(데이터1,데이터2,...)
+-- 특정 필드에만 데이터를 넣을때 사용
+INSERT INTO MEMBERS(username,email,grade,is_active) 
+VALUES('홍길동','TEST@abc.com','BRONZE',FALSE);
+-- cars 테이블에 데이터 한건 추가
+
+
+
+
+
