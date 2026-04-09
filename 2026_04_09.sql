@@ -34,7 +34,11 @@ use car_db;
 -- 현재 선택된 DB확인
 select database();
 
-
+-- 계정생성
+--            사용자명      호스트(IP, %, localhost)    암호
+create user 'car_admin'@'localhost' identified by '12345678';
+-- 권한부여
+grant all privileges on car_db.* to 'car_admin'@'localhost';
 
 
 
