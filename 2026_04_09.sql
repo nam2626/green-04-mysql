@@ -134,7 +134,11 @@ use member_db;
 select * from members;
 select username, email from members;
 -- cars 테이블 전체 데이터 조회
-
-
+use car_db;
+select * from cars;
+-- cars 테이블의 전체 데이터를 조회, year 컬럼만 조회
+select year from cars;
+-- cars 테이블에서 연도만 조회, 중복된 내용은 제거
+select distinct year from cars;
 
 
