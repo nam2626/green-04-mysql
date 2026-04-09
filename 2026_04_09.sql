@@ -62,6 +62,17 @@ VALUES
 ('BMW', '5시리즈 (G30)', 2020, 55000, 42000000),
 ('테슬라', '모델 3', 2021, 38000, 45000000);
 
+-- car 직원 사용자
+-- 사용자명 : car_user
+create user 'car_user'@'localhost' identified by '12345678';
+-- 현재 존재하는 계정 목록
+select user, host from mysql.user;
+-- 직원은 car_db에 있는 테이블 조회 권한만 부여
+grant select on car_db.* to 'car_user'@'localhost';
+show grants for 'car_user'@'localhost';
+-- 권한 회수
+revoke select on car_db.* from 'car_user'@'localhost';
+flush privileges;
 
 
 
