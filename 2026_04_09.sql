@@ -24,5 +24,20 @@ drop table students;
 -- DB 삭제
 drop database student_db;
 
+-- 자동차 DB 생성
+-- car_db
+create database car_db;
+-- 생성된 DB 목록 확인
+show databases;
+-- 생성한 DB 선택
+use car_db;
+-- 현재 선택된 DB확인
+select database();
+
+
+
+
+
+
 
 
