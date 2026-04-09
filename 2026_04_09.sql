@@ -119,7 +119,21 @@ VALUES(6,'홍길동','TEST@abc.com','BRONZE',FALSE,now());
 INSERT INTO MEMBERS(username,email,grade,is_active) 
 VALUES('홍길동','TEST@abc.com','BRONZE',FALSE);
 -- cars 테이블에 데이터 한건 추가
+use car_db;
+insert into cars(brand,model,year,mileage,price,registered_at)
+values('Kia','K5',2025,44444,22222,now());
 
+select * from cars;
+
+-- select 기본
+-- 작성한 필드만 전체 데이터 조회
+-- select 필드명1, 필드명2, .... from 테이블명
+-- 모든 필드 전체 데이터 조회
+-- select * from 테이블명
+use member_db;
+select * from members;
+select username, email from members;
+-- cars 테이블 전체 데이터 조회
 
 
 
