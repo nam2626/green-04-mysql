@@ -201,6 +201,8 @@ values('C001', '컴퓨터공학', '컴퓨터공학 관련 도서'),
 alter table books add column category_id char(4);
 
 -- 7. 각 테이블에 샘플 데이터 추가
+-- books_extended.csv, category_extended.csv 파일을 활용해서 데이터 추가
+
 
 
 
