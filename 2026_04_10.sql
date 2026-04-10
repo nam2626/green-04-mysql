@@ -205,13 +205,14 @@ alter table books add column category_id char(4);
 
 -- 조회
 -- 1. books 테이블에서 도서 제목, 저자, 출판사, 재고수량 조회
-
+select title, author, publisher, stock from books;
 -- 2. books 테이블에서 출판사 목록만 조회
-
+select DISTINCT publisher from books;
 -- 3. books 테이블에서 재고 수량이 20~50인 도서만 조회
-
+select * from books where stock between 20 and 50;
+select * from books where stock >= 20 and stock <= 50;
 -- 4. books 테이블에서 저자이름이 김씨이면서, 출판사가 코딩월드 인 도서만 조회
-
+select * from books where author like '김%' and publisher = '코딩월드';
 -- 5. books 테이블에서 등록일이 2025년 6월인 도서만 조회
 
 -- 6. books 테이블에서 출판사가 '코딩월드' 이거나 '디지털북스'인 도서만 조회
