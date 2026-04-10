@@ -119,6 +119,10 @@ select distinct major from student;
 select row_number() over(order by major) as no, major as name
 from (select distinct major from student) s;
 
+select CONCAT('M', LPAD(ROW_NUMBER() over (order by major), 3, '0') ) as no,
+major as name
+from (select distinct major from student) as unique_majors;
+
 
 
 
