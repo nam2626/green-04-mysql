@@ -142,6 +142,15 @@ from (select distinct major from student) as unique_majors;
 -- 6. 학생 테이블에 학과 번호 컬럼을 추가
 alter table student add column mno char(4);
 
+-- 7. 학생 테이블에 학과 번호 값을 업데이트, 학과 테이블을 참조해서 업데이트 수행
+update student set mno = (select no from major where name = major); 
+
+-- 8. 학생 테이블의 학과명을 컬럼을 제거
+alter table student drop column major;
+
+-- 9. 간단하게 조인 체험
+select s.no, s.name, m.name, s.email 
+from student s join major m on s.mno = m.no; 
 
 
 
