@@ -122,6 +122,31 @@ from (select distinct major from student) s;
 select CONCAT('M', LPAD(ROW_NUMBER() over (order by major), 3, '0') ) as no,
 major as name
 from (select distinct major from student) as unique_majors;
+-- 3. 학과 테이블 생성
+create table major(
+	no char(4) primary key,
+	name varchar(20)
+);
+-- 4. 학과 테이블에 데이터 추가
+insert into major(no, name)
+select CONCAT('M', LPAD(ROW_NUMBER() over (order by major), 3, '0') ) as no,
+major as name
+from (select distinct major from student) as unique_majors;
+-- 5. 학과 테이블 생성하면서 데이터를 추가 - 추천 X
+create table major2
+as 
+select CONCAT('M', LPAD(ROW_NUMBER() over (order by major), 3, '0') ) as no,
+major as name
+from (select distinct major from student) as unique_majors;
+
+-- 6. 학생 테이블에 학과 번호 컬럼을 추가
+alter table student add column mno char(4);
+
+
+
+
+
+
 
 
 
