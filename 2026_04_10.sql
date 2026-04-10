@@ -47,7 +47,7 @@ select * from student where name like '김%';
 select * from student where name like '%현';
 -- 이름에 서가 들어가는 학생만 조회
 select * from student where name like '%서%';
-
+-- 학과명에 공학과로 끝나는데, 공학과 앞에 반드시 2글자가 와야함.
 select * from student where major like '__공학과';
 
 
