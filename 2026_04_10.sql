@@ -61,5 +61,37 @@ select * from student where major not like '__공학과';
 select * from student where in_year not in(2023,2024);
 -- 입학년도가 2023이 아닌 학생만 조회
 select * from student where not in_year = 2023;
+-- 정렬 - order by 컬럼명 asc, 컬럼명 desc
+-- asc 오름차순, desc 내림차순
+select * from student order by in_year desc;
+select * from student order by in_year desc, no asc;
+-- 이름 기준으로 내림차순 정렬
+select * from student order by name desc;
+-- 고정길이 문자열, 가변길이 문자열
+CREATE TABLE string_test (
+    char_col CHAR(10),
+    varchar_col VARCHAR(10)
+);
+
+INSERT INTO string_test VALUES ('Apple', 'Apple');
+
+select * from string_test;
+-- 비교하면 뒤에 공백은 무시하고 비교
+select * from string_test where char_col = 'Apple';
+-- 다른 DB는 조회가 안됨.
+-- 고정길이 문자열은 남은 공간을 공백으로 저장, 공백까지 비교
+select * from string_test where char_col like 'Apple';
+select LENGTH(char_col), LENGTH(varchar_col) from string_test;
+
+-- 학생테이블에 있는 학과 목록만 조회, 단 중복된 학과는 제거
+
+
+
+
+
+
+
+
+
 
 
