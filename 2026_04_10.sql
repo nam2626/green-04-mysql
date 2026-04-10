@@ -214,6 +214,9 @@ select * from books where stock >= 20 and stock <= 50;
 -- 4. books 테이블에서 저자이름이 김씨이면서, 출판사가 코딩월드 인 도서만 조회
 select * from books where author like '김%' and publisher = '코딩월드';
 -- 5. books 테이블에서 등록일이 2025년 6월인 도서만 조회
+select * from books where reg_date BETWEEN '2025-06-01' and '2025-06-30 23:59:59';
+select year(reg_date), month(reg_date) from books;
+select * from books where year(reg_date) = 2025 and month(reg_date) = 6;
 
 -- 6. books 테이블에서 출판사가 '코딩월드' 이거나 '디지털북스'인 도서만 조회
 
@@ -222,6 +225,7 @@ select * from books where author like '김%' and publisher = '코딩월드';
 -- 8. books 테이블에서 코딩월드 도서를 조회, 재고 수량이 높은 순으로 정렬하여 조회. 
 
 -- 9. 재고(stock)가 많은 순서(내림차순)로 정렬하여 상위 5개만 조회하세요.
+select * from books order by stock desc limit 5;
 
 -- 삭제
 -- 1. ISBN 번호가 '1234567890123'인 도서를 테이블에서 삭제하세요.
