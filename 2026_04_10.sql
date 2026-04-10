@@ -49,10 +49,17 @@ select * from student where name like '%현';
 select * from student where name like '%서%';
 -- 학과명에 공학과로 끝나는데, 공학과 앞에 반드시 2글자가 와야함.
 select * from student where major like '__공학과';
-
-
-
-
-
+-- 학생 이메일이 네이버 메일인 학생을 조회
+select * from student where email like '%@naver.com'
+-- 입학년도가 2023, 2024인 학생들만 조회
+select * from student where in_year = 2023 or in_year = 2024;
+select * from student where in_year in(2023,2024);
+select * from student where in_year between 2023 and 2024;
+-- __공학과로 끝나지 않는 학과만 조회
+select * from student where major not like '__공학과';
+-- 입학년도가 2023, 2024가 아닌 학생만 조회
+select * from student where in_year not in(2023,2024);
+-- 입학년도가 2023이 아닌 학생만 조회
+select * from student where not in_year = 2023;
 
 
