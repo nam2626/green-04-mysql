@@ -157,9 +157,21 @@ from student s join major m on s.mno = m.no;
 -- 도서 관리 DB 구축
 -- ---------------------------------------------------------
 -- 1. library_db 생성
+create database library_db; 
+
+use library_db;
 
 -- 2. books 테이블 생성
 --	 도서 고유번호, 도서 제목, 저자, 출판사, ISBN, 재고수량, 등록일
+create table books(
+	id int AUTO_INCREMENT primary key,
+	title varchar(100) not null,
+	author varchar(50),
+	publisher varchar(50),
+	isbn char(13),
+	stock int default 0,
+	reg_date datetime default now()
+);
 
 -- 3. 샘플 데이터 5건 생성해서 저장
 
