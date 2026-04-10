@@ -84,7 +84,7 @@ select * from string_test where char_col like 'Apple';
 select LENGTH(char_col), LENGTH(varchar_col) from string_test;
 
 -- 학생테이블에 있는 학과 목록만 조회, 단 중복된 학과는 제거
-
+select distinct major from student;
 
 
 
