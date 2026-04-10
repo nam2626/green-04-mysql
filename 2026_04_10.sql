@@ -86,11 +86,38 @@ select LENGTH(char_col), LENGTH(varchar_col) from string_test;
 -- 학생테이블에 있는 학과 목록만 조회, 단 중복된 학과는 제거
 select distinct major from student;
 
+-- alter : create로 만든 개체를 수정할때 사용
+-- 사용자 비밀번호 변경
+alter user 'car_admin'@'localhost' identified by '123456789';
+-- 테이블 이름 변경
+alter table string_test rename to new_string_test;
+-- 컬럼 추가
+alter table new_string_test add column num int default 100;
+-- 학생 테이블에 성별 컬럼 추가 boolean 기본값 false
+alter table student add column gender boolean default false;
+-- 성별 컬럼 지우기
+alter table student drop column gender;
+-- 컬럼 타입 변경
+alter table student modify column name varchar(15) not null;
+-- 타입 변경시 기존 데이터가 변환이 되는 건지 체크
+alter table student modify column name int not null;
+alter table student modify column name varchar(2) not null;
+-- 컬럼 이름 변경
+alter table student change column gender new_gender boolean default false;
+-- update 수정
+-- update 테이블명 set 컬럼명 = 수정할값, .... where 조건식
+update student set in_year = 2022 where in_year = 2023;
+-- delete 삭제
+-- delete from 테이블명 where 조건식
+-- 김씨인 학생 데이터만 삭제
+delete from student where name like '김%';
 
-
-
-
-
+-- 학과 테이블
+-- 1. 학과 목록만 추출
+select distinct major from student;
+-- 2. 학과 번호 생성하여 학과번호, 학과명 조회
+select row_number() over(order by major) as no, major as name
+from (select distinct major from student) s;
 
 
 
