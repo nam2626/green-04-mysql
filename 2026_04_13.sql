@@ -74,10 +74,24 @@ references major(no) on delete restrict;
 -- on delete set null : 삭제가 되었을 떄 참조중 값은 null로 변경
 alter table students add constraint fk_major_no foreign key(major_no)
 references major(no) on delete set null;
+-- on delete cascade : 참조되던 값이 삭제되면 같이 삭제
+alter table students add constraint fk_major_no foreign key(major_no)
+references major(no) on delete cascade;
+
+-- on update restirct : 자식테이블에 값이 있으면 수정 작업을 취소
+alter table students add constraint fk_major_no foreign key(major_no)
+references major(no) on update restrict;
+-- on update cascade :  자식테이블에 값이 있으면 수정 작업을 할 때 동일 한 값으로 수정
+alter table students add constraint fk_major_no foreign key(major_no)
+references major(no) on update cascade;
+-- on update cascade :  자식테이블에 값이 있으면 수정 작업을 할 때 NULL 값으로 수정
+alter table students add constraint fk_major_no foreign key(major_no)
+references major(no) on update set null;
+
 -- 외래키 제약 조건 삭제
 alter table students drop constraint fk_major_no;
 
-delete from major where no = 1;
+delete from major where no = 2;
 
 select * from students;
 
