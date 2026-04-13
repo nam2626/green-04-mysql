@@ -113,6 +113,57 @@ alter table subjects add constraint pk_code primary key(code);
 alter table subjects drop primary key;
 
 
+-- ---------------------
+create database new_student_db;
+use new_student_db;
+create table major (
+	no char(3) not null,
+	name varchar(20) null,
+	building varchar(10) null,
+	tel char(11) null
+);
+
+create table student (
+	no char(8) not null,
+	major_no char(3) not null,
+	name varchar(10) null,
+	phone char(11) null
+);
+
+create table course (
+	no char(9) not null,
+	name varchar(20) null,
+	score decimal(1) null
+);
+
+create table Enrollment (
+	course_no char(9) not null,
+	student_no char(8) not null,
+	grade char(2) null
+);
+
+alter table major add constraint PK_MAJOR primary key (no);
+
+alter table student drop primary key;
+
+alter table student add constraint PK_STUDENT primary key (no);
+
+alter table course add constraint PK_COURSE primary key (no);
+
+alter table Enrollment add constraint PK_ENROLLMENT primary key (
+	course_no,
+	student_no
+);
+
+alter table student add constraint FK_major_TO_student_1 foreign key (major_no)
+references major (no);
+
+alter table Enrollment add constraint FK_course_TO_Enrollment_1 foreign key (course_no)
+references course (no);
+
+alter table Enrollment add constraint FK_student_TO_Enrollment_1 foreign key (student_no)
+references student (no);
+
 
 
 
