@@ -28,5 +28,19 @@ INSERT INTO major (name) VALUES ('심리학'),('생활체육');
 -- 테이블 속성 확인
 desc major;
 
+-- 학생 테이블 생성 (학과 테이블 참조)
+CREATE TABLE students (
+  student_id  INT          AUTO_INCREMENT PRIMARY KEY,  -- 학생 고유번호
+  name        VARCHAR(50)  NOT NULL,                    -- 이름
+  email       VARCHAR(100) NOT NULL UNIQUE,             -- 이메일 (중복 불가)
+  major_no     INT,                                      -- 학과
+  is_active  BOOLEAN      DEFAULT TRUE,                -- 재학 여부
+  enrolled_at DATETIME     DEFAULT NOW()               -- 등록일
+);
+
+-- 연락처 추가
+alter table students add column phone char(11);
+-- email에 @가 들어가 있는지 체크하는 제약 조건
+
 
 
