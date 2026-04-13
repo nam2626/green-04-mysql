@@ -99,7 +99,18 @@ delete from major where no = 2;
 
 select * from students;
 
+-- 기본키 추가 방법
+-- 과목 테이블
+--  과목번호, 과목명
+drop table subjects;
+create table subjects(
+	code int,
+	title varchar(20)
+);
 
+alter table subjects add constraint pk_code primary key(code);
+-- 기본키 제거 방법
+alter table subjects drop primary key;
 
 
 
