@@ -4,13 +4,13 @@
   "settings": {
     "width": 2000,
     "height": 2000,
-    "scrollTop": -277.7776,
+    "scrollTop": -138.8888,
     "scrollLeft": -69.4444,
     "zoomLevel": 1,
     "show": 431,
     "database": 4,
     "databaseName": "",
-    "canvasType": "ERD",
+    "canvasType": "@dineug/erd-editor/builtin-schema-sql",
     "language": 1,
     "tableNameCase": 4,
     "columnNameCase": 2,
@@ -105,7 +105,7 @@
       },
       "8RbY3iIFy0HlqxZyoqPNY": {
         "id": "8RbY3iIFy0HlqxZyoqPNY",
-        "name": "table",
+        "name": "order_table",
         "comment": "",
         "columnIds": [
           "nOT2RoJgwCVUpjZxVvxqW",
@@ -119,12 +119,12 @@
           "x": 170,
           "y": 336,
           "zIndex": 4,
-          "widthName": 60,
+          "widthName": 62,
           "widthComment": 60,
           "color": "#03A9F4"
         },
         "meta": {
-          "updateAt": 1776071302630,
+          "updateAt": 1776071829643,
           "createAt": 1776070949322
         }
       },

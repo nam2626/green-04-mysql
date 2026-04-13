@@ -164,6 +164,76 @@ references course (no);
 alter table Enrollment add constraint FK_student_TO_Enrollment_1 foreign key (student_no)
 references student (no);
 
+-- 음식점 시스템
+create database food_db;
+use food_db;
 
 
+CREATE TABLE category
+(
+  id   int         NOT NULL,
+  name VARCHAR(10) NOT NULL UNIQUE,
+  PRIMARY KEY (id)
+);
 
+CREATE TABLE menu
+(
+  id          INT         NOT NULL,
+  name        VARCHAR(30) NOT NULL,
+  price       INT         NULL    ,
+  status      BOOLEAN     NULL    ,
+  recommand   BOOLEAN     NULL    ,
+  category_id int         NOT NULL,
+  PRIMARY KEY (id)
+);
+
+CREATE TABLE order
+(
+  no       int        NOT NULL,
+  time     DATETIME   NULL     DEFAULT now(),
+  status   DECIMAL(1) NULL    ,
+  table_no int        NOT NULL,
+  PRIMARY KEY (no)
+);
+
+CREATE TABLE order_detail
+(
+  order_no int        NOT NULL,
+  menu_id  INT        NOT NULL,
+  quantity DECIMAL(4) NULL    
+);
+
+CREATE TABLE order_table
+(
+  no     int     NOT NULL,
+  status BOOLEAN NULL    ,
+  PRIMARY KEY (no)
+);
+
+ALTER TABLE menu
+  ADD CONSTRAINT FK_category_TO_menu
+    FOREIGN KEY (category_id)
+    REFERENCES category (id);
+
+ALTER TABLE order
+  ADD CONSTRAINT FK_order_table_TO_order
+    FOREIGN KEY (table_no)
+    REFERENCES order_table (no);
+
+ALTER TABLE order_detail
+  ADD CONSTRAINT FK_order_TO_order_detail
+    FOREIGN KEY (order_no)
+    REFERENCES order (no);
+
+ALTER TABLE order_detail
+  ADD CONSTRAINT FK_menu_TO_order_detail
+    FOREIGN KEY (menu_id)
+    REFERENCES menu (id);
+
+-- 테이블 번호 제약조건
+alter table order_table add constraint chk_table_no
+check(no between 1 and 20);
+
+-- 주문개수 제약조건
+alter table order_detail add constraint chk_quantity
+check(quantity > 0);
