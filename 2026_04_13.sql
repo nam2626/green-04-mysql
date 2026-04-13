@@ -65,6 +65,21 @@ VALUES ('최지우', 'jiwoo@example.com', 3, '2025-12-25 10:30:00');
 INSERT INTO students (name, email, major_no) 
 VALUES ('정다은', 'daeun@example.com', 4);
 
+-- 외래키(Foreign Key)FK 제약 조건
+-- on delete restrict : 참조중인 값이 있으면 삭제가 안되게끔 멈춤
+--                      참조중인 테이블의 튜플을 제거 및 업데이트 수행 후 삭제 가능
+--						참조중인 값이 없어야 삭제가 가능
+alter table students add constraint fk_major_no foreign key(major_no)
+references major(no) on delete restrict;
+
+alter table students add constraint fk_major_no foreign key(major_no)
+references major(no) on delete restrict;
+
+alter table students drop constraint fk_major_no;
+
+delete from major where no = 1;
+
+
 
 
 
