@@ -246,9 +246,11 @@ delete from books where reg_date < '2025-01-01' and stock < 10;
 update books set stock=50 where id = 10;
 select * from books where id = 10;
 -- 2. 출판사 이름이 'IT미디어'인 모든 도서의 출판사 이름을 'IT커뮤니케이션'으로 한꺼번에 수정하세요.
-
+update books set publisher = 'IT커뮤니케이션' where publisher = 'IT미디어';
 -- 3. 저자가 '김철수'이면서 카테고리 ID가 'C001'인 도서들의 등록일(reg_date)을 
 -- 현재 시간(now())으로 갱신하세요.
+update books set reg_date = NOW()
+where author = '김철수' and category_id = 'C001';
 
 
 
