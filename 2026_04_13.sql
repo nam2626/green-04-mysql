@@ -17,12 +17,16 @@ create table major(
 INSERT INTO major (name) VALUES ('컴퓨터공학');
 INSERT INTO major (name) VALUES ('경영학');
 
+select * from major;
+
 -- 2. reg_date를 직접 지정하는 경우 (과거 데이터 입력 등)
 INSERT INTO major (name, reg_date) VALUES ('시각디자인학', '2024-03-02');
 INSERT INTO major (name, reg_date) VALUES ('전자공학', '2025-01-15');
 
 -- 3. 여러 건을 한 번에 삽입하는 경우
-INSERT INTO major (name) VALUES ('심리학');
+INSERT INTO major (name) VALUES ('심리학'),('생활체육');
+-- 테이블 속성 확인
+desc major;
 
 
 
