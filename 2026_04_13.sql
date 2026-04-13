@@ -42,18 +42,20 @@ CREATE TABLE students (
 alter table students add column phone char(11);
 -- email에 @가 들어가 있는지 체크하는 제약 조건
 alter table students add constraint chk_email check(email like '_%@%_');
+-- chk_email 제약조건 제거
+alter table students drop constraint chk_email;
 
 -- 1번 학생 (기본 설정값 사용) - 체크
 INSERT INTO students (name, email, major_no) 
-VALUES ('김철수', 'chulsooexample.com', 1);
+VALUES ('김철수', 'chulsoo@example.com', 1);
 
 -- 2번 학생 (학과 번호 2)
 INSERT INTO students (name, email, major_no) 
-VALUES ('이영희', 'younghee@example.com', 2);
+VALUES ('이영희', 'y@oungheeexample.com', 2);
 
 -- 3번 학생 (휴학 중인 경우)
 INSERT INTO students (name, email, major_no, is_active) 
-VALUES ('박민수', 'minsoo@example.com', 1, FALSE);
+VALUES ('박민수', 'minsooexample.co@m', 1, FALSE);
 
 -- 4번 학생 (직접 등록일 지정)
 INSERT INTO students (name, email, major_no, enrolled_at) 
@@ -62,6 +64,8 @@ VALUES ('최지우', 'jiwoo@example.com', 3, '2025-12-25 10:30:00');
 -- 5번 학생 (학과 번호 4)
 INSERT INTO students (name, email, major_no) 
 VALUES ('정다은', 'daeun@example.com', 4);
+
+
 
 
 
