@@ -71,13 +71,15 @@ VALUES ('정다은', 'daeun@example.com', 4);
 --						참조중인 값이 없어야 삭제가 가능
 alter table students add constraint fk_major_no foreign key(major_no)
 references major(no) on delete restrict;
-
+-- on delete set null : 삭제가 되었을 떄 참조중 값은 null로 변경
 alter table students add constraint fk_major_no foreign key(major_no)
-references major(no) on delete restrict;
-
+references major(no) on delete set null;
+-- 외래키 제약 조건 삭제
 alter table students drop constraint fk_major_no;
 
 delete from major where no = 1;
+
+select * from students;
 
 
 
