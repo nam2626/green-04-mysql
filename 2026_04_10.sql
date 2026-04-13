@@ -229,7 +229,7 @@ order by stock desc limit  15;
 -- 7. 도서 제목을 가나다순(오름차순)으로 정렬하여 조회하세요.
 select * from books order by title asc;
 -- 8. books 테이블에서 코딩월드 도서를 조회, 재고 수량이 높은 순으로 정렬하여 조회. 
-
+select * from books where publisher like '코딩월드' order by stock desc;
 -- 9. 재고(stock)가 많은 순서(내림차순)로 정렬하여 상위 5개만 조회하세요.
 select * from books order by stock desc limit 5;
 
