@@ -88,6 +88,10 @@ references major(no) on update cascade;
 alter table students add constraint fk_major_no foreign key(major_no)
 references major(no) on update set null;
 
+-- 두 옵션을 전부 한번에 처리
+alter table students add constraint fk_major_no foreign key(major_no)
+references major(no) on delete cascade on update set null;
+
 -- 외래키 제약 조건 삭제
 alter table students drop constraint fk_major_no;
 
