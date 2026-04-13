@@ -10,7 +10,7 @@
     "show": 431,
     "database": 4,
     "databaseName": "new_student_db",
-    "canvasType": "@dineug/erd-editor/builtin-schema-sql",
+    "canvasType": "ERD",
     "language": 1,
     "tableNameCase": 4,
     "columnNameCase": 2,
