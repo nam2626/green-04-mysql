@@ -232,17 +232,19 @@ select * from books order by title asc;
 select * from books where publisher like '코딩월드' order by stock desc;
 -- 9. 재고(stock)가 많은 순서(내림차순)로 정렬하여 상위 5개만 조회하세요.
 select * from books order by stock desc limit 5;
-
+select * from books;
 -- 삭제
 -- 1. ISBN 번호가 '1234567890123'인 도서를 테이블에서 삭제하세요.
-
+delete from books where isbn = '1234567890123';
 -- 2. 재고(stock)가 0인 모든 도서 데이터를 삭제하세요.
-
--- 3. 2024년 1월 1일 이전에 등록된(reg_date) 도서 중, 재고가 5권 미만인 데이터를 모두 삭제하세요.
+delete from books where stock = 7;
+-- 3. 2025년 1월 1일 이전에 등록된(reg_date) 도서 중, 재고가 10권 미만인 데이터를 모두 삭제하세요.
+delete from books where reg_date < '2025-01-01' and stock < 10;
 
 -- 수정
 -- 1. ID(id)가 10번인 도서의 재고(stock)를 50권으로 변경하는 쿼리를 작성하세요.
-
+update books set stock=50 where id = 10;
+select * from books where id = 10;
 -- 2. 출판사 이름이 'IT미디어'인 모든 도서의 출판사 이름을 'IT커뮤니케이션'으로 한꺼번에 수정하세요.
 
 -- 3. 저자가 '김철수'이면서 카테고리 ID가 'C001'인 도서들의 등록일(reg_date)을 
