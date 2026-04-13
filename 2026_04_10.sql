@@ -219,9 +219,15 @@ select year(reg_date), month(reg_date) from books;
 select * from books where year(reg_date) = 2025 and month(reg_date) = 6;
 
 -- 6. books 테이블에서 출판사가 '코딩월드' 이거나 '디지털북스'인 도서만 조회
-
+select * from books where publisher = '코딩월드' or publisher = '디지털북스';
+select * from books where publisher like '코딩월드' or publisher like '디지털북스';
+select * from books where publisher in('코딩월드','디지털북스');
+select * from books where publisher in('코딩월드','디지털북스') order by stock desc;
+select * from books 
+where publisher in('코딩월드','디지털북스') 
+order by stock desc limit  15;
 -- 7. 도서 제목을 가나다순(오름차순)으로 정렬하여 조회하세요.
-
+select * from books order by title asc;
 -- 8. books 테이블에서 코딩월드 도서를 조회, 재고 수량이 높은 순으로 정렬하여 조회. 
 
 -- 9. 재고(stock)가 많은 순서(내림차순)로 정렬하여 상위 5개만 조회하세요.
