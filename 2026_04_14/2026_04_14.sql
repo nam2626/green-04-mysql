@@ -32,9 +32,36 @@ SELECT REPLACE('AAaa', 'A', 'B');
 
 -- major 테이블에서 건물명(building)에 '관'이라는 글자가 들어간다면 
 -- 이를 '빌딩'으로 바꾸어 조회하세요. (예: 공학관 ➔ 공학빌딩)
-
+select replace(building , '관','빌딩') as building from major;
 -- student 테이블에서 학생의 전화번호(phone) 중 
 -- '010'으로 시작하는 부분을 '8210'(국가코드 포함)으로 변경하여 조회하세요.
+select REPLACE(phone, '010','8201') from  student;
 
+-- UPPER / LOWER : 대소문자 변환
+SELECT UPPER('mysql') AS upper_case, LOWER('MySQL') AS lower_case; 
+
+-- CHAR_LENGTH : 글자 개수
+select CHAR_LENGTH('ABC'), CHAR_LENGTH('안녕하');
+
+-- TRIM : 좌우 쓸데없는 공백을 제거
+select trim('     A     '), CHAR_LENGTH(trim('     A     '));
+select LTRIM('     A     '), RTRIM('     A     ');
+
+-- LPAD, RPAD
+select lpad('1234',10,'0'), rpad('1234',10,'0');
+select lpad('AAAA',10,'123'), RPAD('AAAA',10,'123');
+
+-- major 테이블에 학과번호가 3자리입니다. 이를 총 4자리로 표시하겠습니다.
+-- 빈 앞자리는 알파벳 M을 붙이도록 하겠습니다.
+-- M003
+select lpad(no,4,'M') from major;
+
+-- student 테이블에서 phone 컬럼의 데이터를 앞에 5자리까지만 부분 추출후에
+-- 나머지 뒷자리는 '*'로 마스킹 처리 후 출력
+-- 01012******
+select rpad(substring(phone,1,5),11,'*') from  student;
+select concat(substring(phone,1,5),'******') from  student;
+-- 이름  연락처
+-- 김*수 010****1234
 
 
