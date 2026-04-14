@@ -167,9 +167,39 @@ select
 	hour(now()), minute(now()), second(now());
 
 -- ------------------------------
+-- if(조건, 참, 거짓)
+-- 학점이 3학점 이상이면 '전공필수', '전공선택'
+select *, if(score>=3,'전공필수','전공선택') as course_type from course;
+select *, 
+	if(score>=3,'전공필수',if(score>=2,'전공선택','교양선택')) as course_type 
+from course;
+-- 빈문자열인 연락처 컬럼을 null 변경
+update student set phone = null where phone like '';
+-- 값이 널인것만 조회
+select * from student where phone is null;
+-- 값이 널이 아닌것만 조회
+select * from student where phone is not null;
+-- ifnull(값1,값1이 널일때 나타낼 값)
+select no, major_no, name, ifnull(phone,'연락처미입력') as phone from student;
+-- COALESCE(값1,값2,...)
+select COALESCE(phone,'연락처미입력') as phone from student;
+-- ---------------------------------------------------
+-- 그룹 : SUM, AVG, COUNT, MAX, MIN
+-- ---------------------------------------------------
+-- 'GROUP BY 컬럼'이 없으면 전체 데이터 기준으로 계산
+select count(*) from student;
 
+-- 학과 기준으로 인원수
+select major_no, count(*) from student group by major_no;
+select * from student;
+-- 입학 년도별 인원수
+select lpad(left(no,2),4,'2000'), count(*) 
+from student
+group by lpad(left(no,2),4,'2000');
 
-
-
+-- 입학 년도별, 학과별 인원수
+select lpad(left(no,2),4,'2000'),major_no, count(*) 
+from student
+group by lpad(left(no,2),4,'2000'), major_no;
 
 
