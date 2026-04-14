@@ -102,6 +102,25 @@ select
 	truncate(12345.12345,2),
 	truncate(12345.12345,3);
 
+-- CEIL, FLOOR : 올림, 내림 - 소수점만 제거
+select ceil(3.4), floor(3.4);
+select ceil(-3.4), floor(-3.4);
+
+-- ABS : 절대값
+select abs(100), abs(-100);
+
+-- MOD : 나누기 나머지 구함
+select mod(5,2), mod(4,2);
+
+-- FORMAT : , 소수 자리수 지정, 반올림
+select 
+	format(1234567.89,0),
+	format(1234567.895,2);
+-- $1,500
+select 
+	
+
+
 
 
 
