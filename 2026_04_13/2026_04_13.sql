@@ -165,6 +165,7 @@ alter table Enrollment add constraint FK_student_TO_Enrollment_1 foreign key (st
 references student (no);
 
 -- 음식점 시스템
+drop DATABASE food_db;
 create database food_db;
 use food_db;
 
@@ -172,8 +173,31 @@ use food_db;
 CREATE TABLE category
 (
   id   int         NOT NULL,
-  name VARCHAR(10) NOT NULL UNIQUE,
+  name VARCHAR(10) NOT NULL,
   PRIMARY KEY (id)
+);
+
+CREATE TABLE food_order
+(
+  no       int        NOT NULL,
+  time     DATETIME   NULL     DEFAULT now(),
+  status   DECIMAL(1) NULL    ,
+  table_no int        NOT NULL,
+  PRIMARY KEY (no)
+);
+
+CREATE TABLE food_order_detail
+(
+  order_no int        NOT NULL,
+  menu_id  INT        NOT NULL,
+  quantity DECIMAL(4) NULL    
+);
+
+CREATE TABLE food_order_table
+(
+  no     int     NOT NULL,
+  status BOOLEAN NULL    ,
+  PRIMARY KEY (no)
 );
 
 CREATE TABLE menu
@@ -187,53 +211,30 @@ CREATE TABLE menu
   PRIMARY KEY (id)
 );
 
-CREATE TABLE order
-(
-  no       int        NOT NULL,
-  time     DATETIME   NULL     DEFAULT now(),
-  status   DECIMAL(1) NULL    ,
-  table_no int        NOT NULL,
-  PRIMARY KEY (no)
-);
-
-CREATE TABLE order_detail
-(
-  order_no int        NOT NULL,
-  menu_id  INT        NOT NULL,
-  quantity DECIMAL(4) NULL    
-);
-
-CREATE TABLE order_table
-(
-  no     int     NOT NULL,
-  status BOOLEAN NULL    ,
-  PRIMARY KEY (no)
-);
-
 ALTER TABLE menu
   ADD CONSTRAINT FK_category_TO_menu
     FOREIGN KEY (category_id)
     REFERENCES category (id);
 
-ALTER TABLE order
-  ADD CONSTRAINT FK_order_table_TO_order
+ALTER TABLE food_order
+  ADD CONSTRAINT FK_food_order_table_TO_food_order
     FOREIGN KEY (table_no)
-    REFERENCES order_table (no);
+    REFERENCES food_order_table (no);
 
-ALTER TABLE order_detail
-  ADD CONSTRAINT FK_order_TO_order_detail
+ALTER TABLE food_order_detail
+  ADD CONSTRAINT FK_food_order_TO_food_order_detail
     FOREIGN KEY (order_no)
-    REFERENCES order (no);
+    REFERENCES food_order (no);
 
-ALTER TABLE order_detail
-  ADD CONSTRAINT FK_menu_TO_order_detail
+ALTER TABLE food_order_detail
+  ADD CONSTRAINT FK_menu_TO_food_order_detail2
     FOREIGN KEY (menu_id)
     REFERENCES menu (id);
 
--- 테이블 번호 제약조건
-alter table order_table add constraint chk_table_no
-check(no between 1 and 20);
+-- 주문 수량은 0보다 커야 한다는 제약 조건 추가
+alter table food_order_detail 
+add constraint chk_quantity check (quantity > 0);
 
--- 주문개수 제약조건
-alter table order_detail add constraint chk_quantity
-check(quantity > 0);
+-- 테이블 번호는 1번부터 20번 사이여야 한다는 제약 조건 추가
+alter table food_order_table 
+add constraint chk_table_no check (no between 1 and 20);

@@ -4,7 +4,7 @@
   "settings": {
     "width": 2000,
     "height": 2000,
-    "scrollTop": -138.8888,
+    "scrollTop": -277.7778,
     "scrollLeft": -69.4444,
     "zoomLevel": 1,
     "show": 431,
@@ -76,7 +76,7 @@
       },
       "Wmyder6WQcuhuQxCwx5NT": {
         "id": "Wmyder6WQcuhuQxCwx5NT",
-        "name": "order",
+        "name": "food_order",
         "comment": "",
         "columnIds": [
           "MNMQiywEPB8Lfdou5N0im",
@@ -94,18 +94,18 @@
           "x": 627,
           "y": 335,
           "zIndex": 3,
-          "widthName": 60,
+          "widthName": 61,
           "widthComment": 60,
           "color": "#05057C"
         },
         "meta": {
-          "updateAt": 1776071474878,
+          "updateAt": 1776127223223,
           "createAt": 1776070949097
         }
       },
       "8RbY3iIFy0HlqxZyoqPNY": {
         "id": "8RbY3iIFy0HlqxZyoqPNY",
-        "name": "order_table",
+        "name": "food_order_table",
         "comment": "",
         "columnIds": [
           "nOT2RoJgwCVUpjZxVvxqW",
@@ -119,18 +119,18 @@
           "x": 170,
           "y": 336,
           "zIndex": 4,
-          "widthName": 62,
+          "widthName": 92,
           "widthComment": 60,
           "color": "#03A9F4"
         },
         "meta": {
-          "updateAt": 1776071829643,
+          "updateAt": 1776127243071,
           "createAt": 1776070949322
         }
       },
       "iIMpO5uBBMde2SNCqqohS": {
         "id": "iIMpO5uBBMde2SNCqqohS",
-        "name": "order_detail",
+        "name": "food_order_detail",
         "comment": "",
         "columnIds": [
           "5BZ44uifLQh7EH35hhe3U",
@@ -146,12 +146,12 @@
           "x": 630,
           "y": 557,
           "zIndex": 5,
-          "widthName": 65,
+          "widthName": 95,
           "widthComment": 60,
           "color": "#00FFF4"
         },
         "meta": {
-          "updateAt": 1776071551562,
+          "updateAt": 1776127236680,
           "createAt": 1776070949502
         }
       },
