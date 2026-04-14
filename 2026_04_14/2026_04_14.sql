@@ -79,6 +79,32 @@ select
 	CONCAT(left(phone,3),'****',right(phone,4)) as phone
 from student;
 
+-- instr : 특정 단어가 몇번째 글자에 있는지 검색하는 함수
+select instr('ABCDEF','C'),instr('ABCDEF','X');
+
+-- -----------------------
+-- ROUND(숫자, 자리수) : 반올림
+select 
+	round(12345.12345,-3),
+	round(12345.12345,-2),
+	round(12345.12345,-1),
+	round(12345.12345,0),
+	round(12345.12345,1),
+	round(12345.12345,2),
+	round(12345.12345,3);
+-- TRUNCATE(숫자, 자리수) : 반올림	
+select 
+	truncate(12345.12345,-3),
+	truncate(12345.12345,-2),
+	truncate(12345.12345,-1),
+	truncate(12345.12345,0),
+	truncate(12345.12345,1),
+	truncate(12345.12345,2),
+	truncate(12345.12345,3);
+
+
+
+
 
 
 
