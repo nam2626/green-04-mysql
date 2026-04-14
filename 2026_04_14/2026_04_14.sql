@@ -63,5 +63,25 @@ select rpad(substring(phone,1,5),11,'*') from  student;
 select concat(substring(phone,1,5),'******') from  student;
 -- 이름  연락처
 -- 김*수 010****1234
+select 
+	concat(SUBSTRING(name,1,1),'*', SUBSTRING(name,CHAR_LENGTH(name),1)) 
+		as 
+	name,
+	CONCAT(substring(phone,1,3),'****',substring(phone,8,4)) 
+		as 
+	phone
+from student;
+
+select 
+	concat(left(name,1),'*', if(CHAR_LENGTH(name)=2,'',right(name,1)) ) 
+		as 
+	name,
+	CONCAT(left(phone,3),'****',right(phone,4)) as phone
+from student;
+
+
+
+
+
 
 
