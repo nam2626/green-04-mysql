@@ -120,10 +120,53 @@ select
 select 
 	concat('$',format(1500,0));
 
+-- ---------------------------
+-- NOW : 현재 날짜 시간
+-- curdate : 현재 날짜
+-- curtime : 현재 시간
+select 
+	now(),
+	CURDATE(),
+	curtime(), (CURRENT_DATE);
 
+-- 날짜를 더하거나 빼기
+-- DATE_ADD : 특정일 기준으로 날짜 계산하는 함수
+--			  몇 일뒤 날짜, 한달 뒤 날짜
+select curdate(), date_add(curdate(),interval 30 day) as after_date;
+select curdate(), date_add(curdate(),interval 1 week) as after_date;
+select curdate(), date_add(curdate(),interval -1 week) as after_date;
+select curdate(), date_sub(curdate(),interval 1 week) as after_date;
+select curdate(), date_add(curdate(),interval 1 month) as after_date;
+select curdate(), date_add(curdate(),interval 1 year) as after_date;
+-- 택배일
+select curdate(), date_add(curdate(), interval 3 day) as after_date;
 
+-- 날짜 형태
+-- YYYY-MM-DD
+select date_format(now(),'%Y-%m-%d');
+-- 2026년 06월 01일
+select date_format(now(),'%Y년 %m월 %d일');
+-- 2026-06-01 17:11:24
+select date_format(now(),'%Y-%m-%d %H:%i:%s');
+-- 2026년 06월 01일 PM 11시 05분
+select date_format(now(),'%Y년 %m월 %d일 %p %h시 %i분');
+-- 2026년 06월 01일 Monday PM 11시 05분
+select date_format(now(),'%Y년 %m월 %d일 %W %p %h시 %i분');
+-- 2026-April-14 Tuesday PM 03시 29분
+select date_format(now(),'%Y-%M-%d %W %p %h시 %i분');
+-- 2026-Apr-14 Tuesday PM 03시 29분
+select date_format(now(),'%Y-%b-%d %W %p %h시 %i분');
 
+-- 날짜 계산 : DATEDIFF 특정일1 - 특정일2 -> 일수 반환
+select datediff('2026-12-31',curdate());
 
+-- 년, 월, 일 : year, month, day
+-- 시, 분, 초 : hour, minute, second
+select
+	year(now()),month(now()),day(now()), 
+	hour(now()), minute(now()), second(now());
+
+-- ------------------------------
 
 
 
