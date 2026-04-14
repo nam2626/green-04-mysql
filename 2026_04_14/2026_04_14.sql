@@ -118,7 +118,7 @@ select
 	format(1234567.895,2);
 -- $1,500
 select 
-	
+	concat('$',format(1500,0));
 
 
 
