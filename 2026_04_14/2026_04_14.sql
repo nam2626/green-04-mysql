@@ -14,13 +14,17 @@ select * from student where name like concat('%', '지우' ,'%');
 
 -- SUBSTRING : 특정 문자열을 추출
 select substring('1234567890', 3,2), substring('1234567890', 5,4)
+
 -- SUBSTRING: 날짜 문자열에서 연도만 추출하기
 -- 2026-04-14
+select SUBSTRING('2026-04-14',1,4)
 
 -- student 테이블에서 학번(no)은 8자리(예: 20261234)로 구성되어 있습니다.
 -- 학번의 앞 4자리를 추출하여 '입학년도'라는 별칭으로 조회하세요
+select SUBSTRING(no,1,4) as 입학년도 from  student;
 
 -- major 테이블에서 전화번호(tel)의 첫 3자리(지역번호 등)만 추출하여 조회하세요.
+select SUBString(tel,1,3) from major;
 
 
 
