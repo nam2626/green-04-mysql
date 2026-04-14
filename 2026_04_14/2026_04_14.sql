@@ -26,5 +26,15 @@ select SUBSTRING(no,1,4) as 입학년도 from  student;
 -- major 테이블에서 전화번호(tel)의 첫 3자리(지역번호 등)만 추출하여 조회하세요.
 select SUBString(tel,1,3) from major;
 
+-- REPLACE : 텍스트 변경
+SELECT REPLACE('010-1234-5678', '-', '') AS phone_number; 
+SELECT REPLACE('AAaa', 'A', 'B');
+
+-- major 테이블에서 건물명(building)에 '관'이라는 글자가 들어간다면 
+-- 이를 '빌딩'으로 바꾸어 조회하세요. (예: 공학관 ➔ 공학빌딩)
+
+-- student 테이블에서 학생의 전화번호(phone) 중 
+-- '010'으로 시작하는 부분을 '8210'(국가코드 포함)으로 변경하여 조회하세요.
+
 
 
