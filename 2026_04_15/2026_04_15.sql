@@ -151,9 +151,14 @@ select * from A crosscoursecourse join B;
 
 -- JOIN과 GROUP 결합
 -- 1. 학과 이름별 학생 수 조회
-
+select m.name, count(*) as student_count
+from major m join student s on m.no = s.major_no
+group by m.name;
 -- 2. 학생 이름별, 전체 수강 과목의 평균 평점 조회, 전체 이수한 학점의 합 조회
-
+select s.name, avg(e.grade) as avg_grade, sum(c.score) as sum_score
+from student s join enrollment e on s.no = e.student_no
+     join course c on e.course_no = c.no
+	group by s.no, s.name;
 -- 3. 강좌 이름별, 수강생 숫자, 이수한 평균 평점 조회
 
 -- 4. 학과별, 수강 과목별, 수강한 학생 인원수 조회
