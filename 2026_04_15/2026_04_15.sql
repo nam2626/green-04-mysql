@@ -36,6 +36,23 @@ group by course_no;
 select building, count(*) as count_major
 from major
 group by building;
+-- having 절 활용(그룹 조건 필터)
+-- 1. 강좌별 수강생 인원수를 조회(단, 수강생이 150명 이상인 것만 대상)
+select course_no, count(*) as course_count
+from enrollment
+group by course_no having count(*) >= 150;
+-- 2. 평균 평점이 2.5 이상인 학생들을 조회
+-- 학번 평균_평점
+select student_no,avg(grade) as avg_grade
+from enrollment
+group by student_no having avg(grade) >= 2.5;
+-- 3. 입학년도별 학생 인원수를 조회
+select left(no,4) as in_year, count(*) as count_student
+from student
+group by left(no,4);
+-- 학과번호 별 소속학생이 150명 이상인 학과 번호와 인원수를 조회
+
+
 
 
 
