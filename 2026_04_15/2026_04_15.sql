@@ -82,4 +82,24 @@ select m.name, m.building, s.name
 from major m join student s on m.no = s.major_no
 order by m.name, s.name desc;
 
+-- 5. 학생이름, 수강한 강좌명, 취득한 평점
+select s.name, c.name, e.grade
+from student s 
+	join enrollment e on s.no = e.student_no
+    join course c on e.course_no = c.no;
+
+-- 5. 학생이름, 학과명, 수강한 강좌명, 취득한 평점
+select s.name, m.name, c.name, e.grade
+from student s 
+	join enrollment e on s.no = e.student_no
+    join course c on e.course_no = c.no
+    join major m on s.major_no = m.no;
+    
+select *
+from student s 
+	join enrollment e on s.no = e.student_no
+    join course c on e.course_no = c.no
+    join major m on s.major_no = m.no;
+
+
 
