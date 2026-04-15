@@ -147,7 +147,10 @@ insert into A values('A',1),('B',2),('C',3),('D',4);
 insert into B(code) values('A'),('B'),('D'),('F');
 select * from A natural join B;
 
-select * from A cross join B;
+select * from A crosscoursecourse join B;
+
+-- JOIN과 GROUP 결합
+
 
 
 
