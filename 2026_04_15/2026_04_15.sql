@@ -9,3 +9,25 @@ select * from student where phone is null;
 select count(phone) from student;
 -- 3. 전체 수강 내역의 평균 평점을 구하기
 select truncate(avg(grade),2) from enrollment;
+-- 4. 개설된 강좌 중 가장 높은 학점과 낮은 학점을 구하기
+select max(score), min(score) from course;
+-- 5. 모든 강좌의 학점 총합
+select sum(score) from course;
+
+-- 테이블 단일 그룹화
+-- 1. 학과 번호별 학생 수 구하기
+select major_no, count(*) as student_count
+from student
+group by major_no
+order by student_count desc;
+-- 2. 수강 테이블에서 강좌 번호별 수강생 수 조회
+select course_no, concat(count(*),'명') as course_count
+from enrollment
+group by course_no;
+-- 3. 수강 테이블에서 학생 번호별 수강한 과목수를 조회
+
+
+
+
+
+
