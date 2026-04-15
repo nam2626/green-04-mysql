@@ -55,6 +55,17 @@ select major_no, count(*) as count_student
 from student
 group by major_no having count(*) >= 100;
 
+-- 기본 조인
+-- 1. 학생 이름, 학과명을 함께 조회
+select s.name, m.name
+from student s join major m on s.major_no = m.no;
 
+-- 2. 수강 테이블에서 학번, 이름, 취득 평점을 조회
+select s.no, s.name, e.grade
+from student s join enrollment e on s.no = e.student_no;
+
+select s.no, s.name, avg(e.grade) as avg_grade
+from student s join enrollment e on s.no = e.student_no
+group by s.no, s.name;
 
 
