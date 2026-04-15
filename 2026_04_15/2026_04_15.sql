@@ -118,15 +118,36 @@ where e.grade >= 4.0
 group by s.name;
 
 -- 3. 특정 학생(예: 학번 '20230001')이 수강하는 강좌 이름과 학점(시수) 조회하기
+select c.name, c.score
+from enrollment e join course c on e.course_no = c.no
+where e.student_no like '20230001';
 
 -- 4. 3학점(score=3)짜리 과목을 수강하는 학생 이름과 과목 이름 조회하기
+select s.name, c.name
+from student s join enrollment e on s.no = e.student_no
+     join course c on e.course_no = c.no
+where c.score = 3;
 
 -- 5. '공학1관'에서 수업을 듣는(해당 건물의 학과 소속인) 학생들의 이름과 전공 조회하기
+select s.name as sname, m.name as mname
+from major m join student s on s.major_no = m.no
+where m.building = '공학1관';
 
+-- 자연 조인
+create table A(
+	code char(1),
+    n int);
 
+create table B(
+	code char(1),
+    cdate date default (CURRENT_DATE)
+);
 
+insert into A values('A',1),('B',2),('C',3),('D',4);
+insert into B(code) values('A'),('B'),('D'),('F');
+select * from A natural join B;
 
-
+select * from A cross join B;
 
 
 
