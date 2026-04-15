@@ -219,8 +219,12 @@ where e.course_no is null ;
 
 -- -----------------------------------------
 -- 실습 문제
-
 -- -----------------------------------------
+-- 삭제할 데이터
+delete from sales where car_no in('CAR-610232','CAR-482313','CAR-369763','CAR-259036');
+delete from car where manufacturer_no='M04';
+delete from sales where car_no in('CAR-259036','CAR-444809','CAR-654187','CAR-482313');
+
 -- 1. 연료 타입(fuel_type)별 자동차 수, 평균 가격 조회
 -- 2. 지점(branch)별 총 판매 건수 조회
 -- 3. 제조사 번호별 등록된 자동차 수 조회
