@@ -174,6 +174,28 @@ select left(s.no,4) as s_year, m.name, count(*) as count_student
 from student s join major m on s.major_no = m.no
 group by left(s.no,4),m.name;
 
+delete from enrollment where course_no in('C13432115','C16342045','C18188658');
+alter table enrollment drop constraint FK_student_TO_enrollment1;
+delete from student where major_no in('105', '108');
+delete from enrollment where student_no in('20230017','20240685','20260333');
 
+-- 외부 조인 (Outer Join)
+select * from A left outer join B on A.code = B.code;
+select * from A right outer join B on A.code = B.code;
+-- 불일치 쿼리
+select * from A left outer join B on A.code = B.code where B.code is null;
+select * from A where code not in(select code from B);
+select * from A right outer join B on A.code = B.code where A.code is null;
+
+-- 학과 테이블에서 학과 인원수가 0인 학과들의 학과번호, 학과명을 조회
+select m.no, m.name
+from major m left outer join student s on m.no = s.major_no
+where s.major_no is null;
+select m.no, m.name
+from student s right outer join major m on m.no = s.major_no
+where s.major_no is null;
+
+-- 한번도 수강신청을 하지않은 학생들을 조회
+-- 학번 이름 학과명 연락처
 
 
