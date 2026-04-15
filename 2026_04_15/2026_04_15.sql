@@ -68,4 +68,18 @@ select s.no, s.name, avg(e.grade) as avg_grade
 from student s join enrollment e on s.no = e.student_no
 group by s.no, s.name;
 
+-- 3. 수강 테이블, 강좌 테이블에서 강좌 번호, 강좌 명, 취득한 평점 조회
+select c.no, c.name, e.grade
+from course c join enrollment e on c.no = e.course_no;
+
+select c.no, c.name, avg(e.grade)
+from course c join enrollment e on c.no = e.course_no
+group by c.no, c.name;
+
+-- 4. 학과 테이블에서 학과 이름과 건물 이름, 해당 학과 소속의 학생이름을 
+--    학과 이름 기준으로 정렬해서 조회
+select m.name, m.building, s.name
+from major m join student s on m.no = s.major_no
+order by m.name, s.name desc;
+
 
