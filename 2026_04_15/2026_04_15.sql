@@ -25,8 +25,12 @@ select course_no, concat(count(*),'명') as course_count
 from enrollment
 group by course_no;
 -- 3. 수강 테이블에서 학생 번호별 수강한 과목수를 조회
+select student_no, count(*) as course_count
+from enrollment
+group by student_no;
+-- 4. 수강 테이블에서 강좌 번호별 최고 평점, 최저 평점
 
-
+-- 5. 학과 테이블에서 건물별로 위치한 학과 수 조회
 
 
 
