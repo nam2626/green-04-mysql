@@ -197,5 +197,13 @@ where s.major_no is null;
 
 -- 한번도 수강신청을 하지않은 학생들을 조회
 -- 학번 이름 학과명 연락처
+select s.no, s.name, m.name, s.phone
+from student s left outer join enrollment e on s.no = e.student_no
+join major m on s.major_no = m.no
+where e.student_no is null;
 
+select s.no, s.name, m.name, s.phone
+from student s join major m on s.major_no = m.no
+left outer join enrollment e on s.no = e.student_no
+where e.student_no is null;
 
