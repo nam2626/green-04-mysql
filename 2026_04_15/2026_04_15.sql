@@ -207,3 +207,5 @@ from student s join major m on s.major_no = m.no
 left outer join enrollment e on s.no = e.student_no
 where e.student_no is null;
 
+-- 한번 수강신청이 되지 않은 과정 조회
+-- 과정번호, 과정명
