@@ -103,8 +103,19 @@ from student s
 
 -- 조인과 조건 결함
 -- 1. '컴퓨터공학과'에 소속된 학생들의 이름과 전화번호 조회하기
+select s.name, s.phone, m.name
+from student s join major m on s.major_no = m.no
+where m.name like '컴퓨터공학과';
 
 -- 2. 평점 4.0 이상을 받은 학생의 이름과 강좌 번호 조회하기
+select s.name, e.course_no, e.grade
+from student s join enrollment e on s.no = e.student_no
+where e.grade >= 4.0;
+
+select s.name, count(*) as grade_count
+from student s join enrollment e on s.no = e.student_no
+where e.grade >= 4.0
+group by s.name;
 
 -- 3. 특정 학생(예: 학번 '20230001')이 수강하는 강좌 이름과 학점(시수) 조회하기
 
