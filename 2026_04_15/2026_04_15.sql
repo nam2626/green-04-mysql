@@ -50,8 +50,10 @@ group by student_no having avg(grade) >= 2.5;
 select left(no,4) as in_year, count(*) as count_student
 from student
 group by left(no,4);
--- 학과번호 별 소속학생이 150명 이상인 학과 번호와 인원수를 조회
-
+-- 학과번호 별 소속학생이 100명 이상인 학과 번호와 인원수를 조회
+select major_no, count(*) as count_student
+from student
+group by major_no having count(*) >= 100;
 
 
 
