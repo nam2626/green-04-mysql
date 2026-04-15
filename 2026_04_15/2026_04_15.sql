@@ -209,3 +209,12 @@ where e.student_no is null;
 
 -- 한번 수강신청이 되지 않은 과정 조회
 -- 과정번호, 과정명
+select c.no, c.name
+from course c left outer join enrollment e on c.no = e.course_no
+where e.course_no is null ;
+
+select c.*
+from course c left outer join enrollment e on c.no = e.course_no
+where e.course_no is null ;
+
+
