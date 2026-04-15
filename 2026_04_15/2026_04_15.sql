@@ -160,11 +160,19 @@ from student s join enrollment e on s.no = e.student_no
      join course c on e.course_no = c.no
 	group by s.no, s.name;
 -- 3. 강좌 이름별, 수강생 숫자, 이수한 평균 평점 조회
-
+select c.name, count(*) as student_count, avg(e.grade) as avg_grade
+from course c join enrollment e on c.no = e.course_no
+group by c.name;
 -- 4. 학과별, 수강 과목별, 수강한 학생 인원수 조회
-
+select m.name, c.name, count(*) as count_student
+from major m join student s on m.no = s.major_no
+ join enrollment e on e.student_no = s.no
+ join course c on e.course_no = c.no
+ group by m.name, c.name;
 -- 5. 입학년도별, 학과별, 인원수 조회
-
+select left(s.no,4) as s_year, m.name, count(*) as count_student
+from student s join major m on s.major_no = m.no
+group by left(s.no,4),m.name;
 
 
 
