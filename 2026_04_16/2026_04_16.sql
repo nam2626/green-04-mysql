@@ -221,6 +221,15 @@ select e.emp_name, e.dept, e.salary,
 	row_number() over(partition by e.dept order by e.salary desc) as rw
 from employees e;
 
+-- RANK() , DENSE_RANK()
+-- RANK() : 동점 순위 이후 순위를 건너뜀(1,1,3,4,5...)
+-- DENSE_RANK() : 동정 순위 이후 순위를 이어서 부여함(1,1,2,3,...)
+select e.*,
+	rank() over(order by salary desc) as rk,
+	dense_rank() over(order by salary desc) as drk
+from employees e ;
+
+
 
 
 
