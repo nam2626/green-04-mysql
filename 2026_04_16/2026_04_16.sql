@@ -289,4 +289,26 @@ select * from
 from employees e) s
 where s.rw <= 2;
 
+-- 전체 급여 대비 비율 계산 직원 급여 / 전체 급여
+select e.dept,e.emp_name,e.salary,
+	sum(e.salary ) over(partition by e.dept) as dept_total,
+	sum(e.salary ) over() as all_total,
+	truncate(e.salary / sum(e.salary ) over () * 100,1) as rate
+from employees e ;
+
+use group_student;
+-- 각 학과 내에서 학생들의 평균 성적을 기준으로 높은 순서대로 순위를 매겨서 조회하세요.
+-- 공동 순위가 있는경우 다음 순위로 건너뛰는 함수를 사용
+-- 학과명, 학번, 학생이름, 평균 평점, 순위
+select m.name, sv.`no`,sv.name,sv.avg_grade, sv.rk from
+(select 
+	s.no, s.name, s.major_no , avg(e.grade) as avg_grade,
+	rank() over(partition by s.major_no order by avg(e.grade) desc) as rk
+from student s join enrollment e on s.no = e.student_no
+group by s.no) sv join major m on sv.major_no = m.no ;
+
+
+
+
+
 
