@@ -253,7 +253,21 @@ select e.dept, e.emp_name, e.salary,
 	) as dept_cur_total
 from employees e ;
 
+-- AVG() : 파티션 평균
+select e.emp_name , e.salary,
+	avg(e.salary) over(partition by e.dept)
+from employees e ;
 
+select e.emp_name , e.salary,
+	floor(avg(e.salary) over(rows between 1 preceding and 1 following)) as avg_salary
+from employees e ;
+
+-- LEAD(컬럼명, offset, 기본값) - 현재행 기준으로 다음 행의 값
+-- LAG(컬럼명, offset, 기본값) - 현재행 기준으로 이전 행의 값
+select e.emp_name , e.salary,
+	LEAD(e.emp_name,1,'') over(order by salary desc),
+	LAG(e.emp_name,1,'') over(order by salary desc)
+from employees e ;
 
 
 
