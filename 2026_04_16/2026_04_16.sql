@@ -242,6 +242,16 @@ select e.emp_name, e.salary, e.dept,
 	ntile(2) over(partition by e.dept order by e.salary desc) as nt
 from employees e ;
 
+-- SUM() : 파티션 합계, 누적합
+select e.dept, e.emp_name, e.salary,
+	-- 부서별 전체 합계
+	sum(e.salary) over(partition by e.dept) as dept_total,
+	sum(e.salary) 
+	over(partition by e.dept 
+	order by salary
+	rows between unbounded preceding and current row
+	) as dept_cur_total
+from employees e ;
 
 
 
