@@ -234,8 +234,13 @@ select e.emp_name,e.salary ,e.dept,
 	dense_rank() over(partition by dept order by salary desc) as drk
 from employees e ;
 
+-- NTILE(n) : 데이터를 n개의 동일한 버킷으로 나눔. 사분위 분석에 이용됨.
+select e.emp_name, e.salary, ntile(2) over(order by e.salary desc) as nt
+from employees e ;
 
-
+select e.emp_name, e.salary, e.dept, 
+	ntile(2) over(partition by e.dept order by e.salary desc) as nt
+from employees e ;
 
 
 
