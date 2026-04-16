@@ -124,10 +124,15 @@ select * from cars c join rentals r on c.car_id = r.car_id where c.category = 'S
 select * from rentals 
 where car_id in(select car_id from cars where category = 'SUV');
 
+-- 인라인 뷰: 차량별 누적 수익 계산 후 평균 이상만
+select * 
+from
+	(select car_id, sum(total_fee - discount) as sum_total 
+	from rentals group by car_id) r
+where 
+	sum_total >= (select avg(total_fee - discount) from rentals); 
 
-
-
-
+-- 스칼라
 
 
 
