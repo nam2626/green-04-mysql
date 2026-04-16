@@ -206,6 +206,26 @@ INSERT INTO employees VALUES
   (9,  '인사', '윤소연', '차장', 5700000, '2016-12-03', '서울'),
   (10, '인사', '임채원', '대리', 3600000, '2022-08-19', '부산');
 
+select * from employees e;
+
+-- ROW_NUMBER() : 파티션 내에서 중복 없이 고유한 순번을 부여.
+select e.emp_name, e.dept, e.salary,
+	row_number() over()
+from employees e;
+
+select e.emp_name, e.dept, e.salary,
+	row_number() over(order by e.salary desc)
+from employees e;
+
+select e.emp_name, e.dept, e.salary,
+	row_number() over(partition by e.dept order by e.salary desc) as rw
+from employees e;
+
+
+
+
+
+
 
 
 
