@@ -115,6 +115,16 @@ INSERT INTO rentals (car_id, customer_id, start_date, end_date, actual_return, t
   (3, 3, '2025-04-01', '2025-04-03', NULL,          180000, 20000),
   (4, 1, '2025-02-14', '2025-02-17', '2025-02-17', 360000, 30000);
 
+-- 단일행: 일일 렌탈료가 가장 비싼 차량
+select * from cars where daily_rate = (select max(daily_rate) from cars);
+
+-- 다중행: SUV가 렌탈된 이력
+select * from cars c join rentals r on c.car_id = r.car_id where c.category = 'SUV';
+
+select * from rentals 
+where car_id in(select car_id from cars where category = 'SUV');
+
+
 
 
 
