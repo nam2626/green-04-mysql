@@ -332,6 +332,13 @@ select
 	max(e.grade) over(partition by s.major_no) - e.grade as gap_from_best	
 from enrollment e join student s on e.student_no = s.no;
 
+-- LAG
+-- 수강 내역에서 각 학생별로 과목 번호 순서에 따라 
+-- '이전 과목'에서 받은 성적을 현재 행에 함께 표시하세요. (이전 성적이 없으면 0으로 표시)
+
+-- NTILE
+-- 각 학과 내에서 평균 성적을 기준으로 학생들을 4개의 그룹으로 나누어, 어느 등급에 속하는지 표시하세요.
+
 
 
 
