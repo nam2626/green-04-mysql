@@ -153,6 +153,59 @@ select * from enrollment e
 where e.grade  < (select avg(r.grade) from enrollment r);
 
 -- 2. 수강인원이 가장 많은 강좌의 이름을 조회
+select e.course_no from enrollment e 
+group by e.course_no order by count(*) desc limit 1;
+
+select c.name from course c  
+where c.no = (select e.course_no from enrollment e 
+group by e.course_no order by count(*) desc limit 1)
+
+-- 3. 한번도 수강 신청을 하지 않은 학생 정보를 조회
+--   학번 이름 학과번호 연락처
+select * from student s
+where s.`no` not in(select distinct e.student_no from enrollment e);
+
+select s.* from student s left outer join enrollment e on s.`no` = e.student_no
+where e.student_no is null; 
+
+-- 4. '사회과학관' 건물을 사용하는 학과 소속 학생들의 명단 조회
+select no from major where building = '사회과학관';
+select * from student s 
+where s.major_no in(select no from major where building = '사회과학관');
+
+-- 5. 학생의 학번, 이름, 수강한 강좌 개수를 출력(스칼라 서브쿼리)
+select s.no, s.name, 
+	(select count(*) from enrollment e where e.student_no = s.no)
+	as std_enroll_count
+from student s;
+
+
+-- -------------------------------
+create database window_db;
+use window_db;
+
+CREATE TABLE employees (
+  id        INT PRIMARY KEY,
+  dept      VARCHAR(20),
+  emp_name  VARCHAR(20),
+  job_title VARCHAR(20),
+  salary    INT,
+  hire_date DATE,
+  region    VARCHAR(10)
+);
+
+INSERT INTO employees VALUES
+  (1,  '영업', '김철수', '과장', 5200000, '2020-03-15', '서울'),
+  (2,  '영업', '이영희', '대리', 3800000, '2021-07-01', '서울'),
+  (3,  '영업', '박민준', '사원', 2800000, '2023-01-10', '부산'),
+  (4,  '영업', '최수진', '차장', 6100000, '2018-11-20', '서울'),
+  (5,  '개발', '정도현', '수석', 7500000, '2017-05-08', '서울'),
+  (6,  '개발', '한지우', '선임', 5900000, '2019-09-22', '서울'),
+  (7,  '개발', '오민서', '주임', 4200000, '2022-04-11', '대전'),
+  (8,  '개발', '강준혁', '수석', 7500000, '2019-02-14', '서울'),
+  (9,  '인사', '윤소연', '차장', 5700000, '2016-12-03', '서울'),
+  (10, '인사', '임채원', '대리', 3600000, '2022-08-19', '부산');
+
 
 
 
