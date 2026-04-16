@@ -278,6 +278,15 @@ select e.emp_name , e.salary,
 		rows between unbounded preceding and unbounded following)
 from employees e ;
 
+-- 부서별 급여 상위 2명 조회
+select e.dept, e.emp_name, e.salary,
+	row_number() over(partition by e.dept order by e.salary desc) as rw
+from employees e;
 
+select * from 
+(select e.dept, e.emp_name, e.salary,
+	row_number() over(partition by e.dept order by e.salary desc) as rw
+from employees e) s
+where s.rw <= 2;
 
 
