@@ -269,6 +269,14 @@ select e.emp_name , e.salary,
 	LAG(e.emp_name,1,'') over(order by salary desc)
 from employees e ;
 
+-- FIRST_VALUE() / LAST_VALUE()
+select e.emp_name , e.salary,
+	FIRST_VALUE(e.emp_name) over(partition by e.dept order by salary desc),
+	LAST_VALUE(e.emp_name) 
+		over(partition by e.dept 
+		order by salary desc 
+		rows between unbounded preceding and unbounded following)
+from employees e ;
 
 
 
