@@ -279,7 +279,23 @@ where year(s.sales_date) =2024
 group by m.name
 order by sales_count desc limit 1;
 -- 15. 모든 제조사와 해당 제조사가 생산한 자동차 수를 조회 (자동차가 없는 제조사도 0으로 표시)
+select m.name, count(c.no) as manufacturer_count
+from car c right join manufacturer m on c.manufacturer_no = m.no
+group by m.name;
 -- 16. 한 번도 판매된 적이 없는 자동차의 모델명과 제조사명 조회
+select c.*, m.name
+from car c join manufacturer m on c.manufacturer_no = m.no
+left outer join sales s on c.no = s.car_no
+where s.id is null;
 -- 17. 자동차를 하나도 등록하지 않은 제조사의 이름과 국가 조회
--- 18. 모든 자동차 리스트를 출력하고, 2025년에 판매된 적이 있는지 여부 표시 (판매된 차는 판매일, 아니면 '판매된적없음'으로 출력)
+select m.name, m.country
+from car c right outer join manufacturer m on c.manufacturer_no = m.no
+where c.no is null;
+-- 18. 모든 자동차 리스트를 출력하고, 2025년에 판매된 적이 있는지 여부 표시 
+--     (판매된 차는 판매일, 아니면 '판매된적없음'으로 출력)
+select c.*, if(year(s.sales_date) =2025,s.sales_date,'판매된적없음') as is_sales_2025
+from car c left join sales s on c.no = s.car_no;
+
+
+
 
