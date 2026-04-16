@@ -307,6 +307,30 @@ select m.name, sv.`no`,sv.name,sv.avg_grade, sv.rk from
 from student s join enrollment e on s.no = e.student_no
 group by s.no) sv join major m on sv.major_no = m.no ;
 
+-- 학생별로 수강한 과목의 성적을 학생번호 순으로 나열,각 학생 내에서 성적의 누적합계를 구하시오.
+select 
+	e.student_no, e.course_no, e.grade,
+	sum(e.grade) over(partition by e.student_no order by e.course_no)
+	as acc_grade
+from enrollment e;
+-- 학번, 학생이름, 강좌명, 성적, 성적의 누적합계
+select 
+	e.student_no, s.name, e.course_no, c.name ,e.grade,
+	sum(e.grade) over(partition by e.student_no order by e.course_no)
+	as acc_grade
+from enrollment e join student s on e.student_no = s.no
+join course c on e.course_no = c.no;
+
+-- 학과 내 최고 점수와 차이 계산 조회
+-- 학생 개별 성적과 함꼐, 해당 학생이 속한 학과 전체의 최고 성적을 나란히 표시하고,
+-- 최고점과 점수 차이를 계산해서 조회
+-- 학생이름, 학과번호, 성적, 학과 최고 성적, 성적 - 학과최고성적
+
+select 
+	s.name, s.major_no, e.grade, 
+	max(e.grade) over(partition by s.major_no) as major_max_grade,
+	max(e.grade) over(partition by s.major_no) - e.grade as gap_from_best	
+from enrollment e join student s on e.student_no = s.no;
 
 
 
