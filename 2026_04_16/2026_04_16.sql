@@ -229,6 +229,11 @@ select e.*,
 	dense_rank() over(order by salary desc) as drk
 from employees e ;
 
+select e.emp_name,e.salary ,e.dept,
+	rank() over(partition by dept order by salary desc) as rk,
+	dense_rank() over(partition by dept order by salary desc) as drk
+from employees e ;
+
 
 
 
