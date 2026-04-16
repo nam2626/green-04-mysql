@@ -132,7 +132,10 @@ from
 where 
 	sum_total >= (select avg(total_fee - discount) from rentals); 
 
--- 스칼라
+-- 스칼라(Scalar) : 서브쿼리가 SELECT 절에 사용됨, 하나의 컬럼처럼 사용이됨.
+use group_student;
+-- 학번, 이름, 학과명, 연락처
+
 
 
 
