@@ -224,22 +224,60 @@ where e.course_no is null ;
 delete from sales where car_no in('CAR-610232','CAR-482313','CAR-369763','CAR-259036');
 delete from car where manufacturer_no='M04';
 delete from sales where car_no in('CAR-259036','CAR-444809','CAR-654187','CAR-482313');
-
+use group_car_db;
 -- 1. 연료 타입(fuel_type)별 자동차 수, 평균 가격 조회
+select fuel_type, count(*) as count_car, avg(price) as avg_price
+from car group by fuel_type;
 -- 2. 지점(branch)별 총 판매 건수 조회
+select branch, count(*) from sales group by branch;
 -- 3. 제조사 번호별 등록된 자동차 수 조회
+select manufacturer_no, count(*) as count_car from car group by manufacturer_no;
 -- 4. 판매 날짜별 판매 건수 조회
+select sales_date, count(*) as count_sales from sales
+group by sales_date;
 -- 5. 국가(country)별 제조사 수 조회
+select country, count(*) as count_country from manufacturer group by country;
 -- 6. 자동차 이름과 해당 자동차 제조사의 이름을 함께 조회
+select c.name, m.name 
+from car c inner join manufacturer m on c.manufacturer_no = m.no;
+select c.name, m.name 
+from car c join manufacturer m on c.manufacturer_no = m.no;
 -- 7. 판매 내역의 고객 이름과 판매된 자동차의 이름을 조회
+select s.customer_name, c.name
+from sales s join car c on s.car_no = c.no;
 -- 8. 2000년 이후에 설립된 제조사의 자동차들 조회
+select c.*, m.name
+from manufacturer m join car c
+where foundation_year >= 2000;
 -- 9. 가격이 7000만 원 이상인 차를 산 고객 리스트 조회
+select s.customer_name, c.name
+from sales s join car c on s.car_no = c.no
+where c.price >= 7000;
 -- 10. 각 판매 내역에 대해 '차이름(제조사명)' 형식으로 출력
 --     고객명, 차이름(제조사명)
+select s.customer_name, concat(c.name,'(',m.name,')') as car_name
+from sales s join car c on s.car_no = c.no
+join manufacturer m on c.manufacturer_no = m.no;
 -- 11. 제조사 이름별 자동차 모델 수 조회
+select m.name, count(*) as count_car
+from manufacturer m join car c on m.no = c.manufacturer_no
+group by m.name;
 -- 12. 연료 타입별 총 판매 대수를 내림차순 조회
+select fuel_type, count(*) as sale_car_count
+from car c join sales s on c.no = s.car_no
+group by fuel_type order by sale_car_count desc;
 -- 13. 가장 많이 팔린 자동차 모델 이름과 판매 대수 조회
+select c.name, count(*) as count_car
+from car c join sales s on c.no = s.car_no
+group by c.name
+order by count_car desc limit 1;
 -- 14. 2024년에 가장 많이 판매한 제조사 이름 조회
+select m.name, count(*) as sales_count
+from sales s join car c on s.car_no = c.no
+join manufacturer m on c.manufacturer_no = m.no
+where year(s.sales_date) =2024
+group by m.name
+order by sales_count desc limit 1;
 -- 15. 모든 제조사와 해당 제조사가 생산한 자동차 수를 조회 (자동차가 없는 제조사도 0으로 표시)
 -- 16. 한 번도 판매된 적이 없는 자동차의 모델명과 제조사명 조회
 -- 17. 자동차를 하나도 등록하지 않은 제조사의 이름과 국가 조회
