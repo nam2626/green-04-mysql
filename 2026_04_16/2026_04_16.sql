@@ -135,9 +135,24 @@ where
 -- 스칼라(Scalar) : 서브쿼리가 SELECT 절에 사용됨, 하나의 컬럼처럼 사용이됨.
 use group_student;
 -- 학번, 이름, 학과명, 연락처
+select s.no, s.name, m.name, s.phone  
+from student s join major m on s.major_no = m.no;
 
+select s.no, s.name, 
+	(select m.name from major m where m.no = s.major_no ) as major_name,
+	s.phone
+from student s;
 
+-- 수강 테이블에 있는 grade를 0.0~4.5까지 랜덤하게 숫자를 업데이트
+-- RAND()
+select round(rand() * 4.5,2);
+update enrollment set grade = round(rand() * 4.5,2);
 
+-- 1. 전체 평균 성적보다 낮은 점수를 받은 수강 내역을 조회
+select * from enrollment e 
+where e.grade  < (select avg(r.grade) from enrollment r);
+
+-- 2. 수강인원이 가장 많은 강좌의 이름을 조회
 
 
 
