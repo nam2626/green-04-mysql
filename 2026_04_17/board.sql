@@ -187,6 +187,28 @@ SELECT
 from board b left outer join board_member bm on b.mno = bm.no
 LEFT outer join board_content_like bcl on bcl.bno = b.bno
 LEFT outer join board_content_hate bch on bch.bno = b.bno
+order by b.bno desc
 ;
 
 select * from board_view;
+
+-- 페이징 - 방법1 
+--  board_view에서 최근 글 30건만 조회
+select * from board_view limit 30;
+-- limit 조회할게시글개수 offset (페이지번호-1)*조회할게시글개수
+select * from board_view limit 30 offset 30;
+select * from board_view limit 30 offset 120;
+
+-- 페이징 - 방법2
+-- board_view 조회시 row_number 적용
+select ROW_NUMBER() OVER(ORDER BY b.bno desc) as rw, b.*
+from board_view b;
+
+-- 1페이지 읽기
+select * from (select ROW_NUMBER() OVER(ORDER BY b.bno desc) as rw, b.*
+from board_view b) bv
+where ceil(bv.rw/30) = 1;
+-- 2페이지 읽기
+select * from (select ROW_NUMBER() OVER(ORDER BY b.bno desc) as rw, b.*
+from board_view b) bv
+where ceil(bv.rw/30) = 2;
