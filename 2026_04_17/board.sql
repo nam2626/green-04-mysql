@@ -131,3 +131,31 @@ select count(*) from board_member;
 
 -- 게시글 확인
 select * from board LIMIT 100;
+
+-- 전체 게시글 조회
+--  글번호, 제목, 회원번호, 닉네임, 작성일, 글내용, 조회수
+SELECT
+    b.bno, b.title, b.write_date,
+    b.content,b.bcount, bm.no, bm.nickname
+from board b join board_member bm 
+on b.mno = bm.no order by b.bno desc;
+-- 글번호 별 좋아요 개수를 조회
+select bl.bno, count(*) as blike
+from board_like bl group by bl.bno;
+
+-- 글번호 별 싫어요 개수를 조회
+select bh.bno, count(*) as bhate
+from board_hate bh group by bh.bno;
+
+-- 전체 게시글 조회
+--  글번호, 제목, 회원번호, 닉네임, 작성일, 글내용, 조회수, 게시글 좋아요 개수, 게시글 싫어요 개수
+SELECT
+    b.bno, b.title, b.write_date,
+    b.content,b.bcount, bm.no, bm.nickname, bl.blike, bh.bhate
+from board b join board_member bm 
+on b.mno = bm.no
+join (select bl.bno, count(*) as blike
+from board_like bl group by bl.bno) bl on bl.bno = b.bno
+join (select bh.bno, count(*) as bhate
+from board_hate bh group by bh.bno) bh on bh.bno = b.bno
+order by b.bno desc;
