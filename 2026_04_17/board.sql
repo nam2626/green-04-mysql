@@ -119,3 +119,15 @@ alter table board_like add constraint unique (no, bno);
 alter table board_hate add constraint unique (no, bno);
 alter table board_comment_like add constraint unique (no, cno); 
 alter table board_comment_hate add constraint unique (no, cno);
+
+--- -------------------------
+select count(*) from board;
+select count(*) from board_comment; 
+select count(*) from board_like;
+select count(*) from board_hate;
+select count(*) from board_comment_like;
+select count(*) from board_comment_hate;
+select count(*) from board_member;
+
+-- 게시글 확인
+select * from board LIMIT 100;
