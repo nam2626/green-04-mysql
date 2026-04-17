@@ -269,7 +269,31 @@ end $$
 DELIMITER ;
 
 
+DELIMITER $$
 
+CREATE TRIGGER trg_after_delete_employees
+AFTER DELETE ON employees
+FOR EACH ROW
+BEGIN
+    INSERT INTO deleted_employees (
+        id,
+        name,
+        dept,
+        salary,
+        hired_at,
+        deleted_at
+    )
+    VALUES (
+        OLD.id,
+        OLD.name,
+        OLD.dept,
+        OLD.salary,
+        OLD.hired_at,
+        NOW()
+    );
+END $$
+
+DELIMITER ;
 
 
 
